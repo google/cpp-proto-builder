@@ -1,0 +1,75 @@
+// Copyright 2021 The CPP Proto Builder Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Automatically generated using https://google.github.io/cpp-proto-builder
+
+#ifndef PROTO_BUILDER_TESTS_ADVANCED_CC_PROTO_BUILDER_H_
+#define PROTO_BUILDER_TESTS_ADVANCED_CC_PROTO_BUILDER_H_
+
+#include <string>
+#include <utility>
+
+#include "proto_builder/tests/advanced.pb.h"  // IWYU pragma: export
+#include "absl/status/status.h"
+#include "absl/status/statusor.h"
+#include "proto_builder/oss/source_location.h"
+
+namespace proto_builder::tests {
+
+class AdvancedBuilder {
+ public:
+  explicit AdvancedBuilder(
+      proto_builder::oss::SourceLocation source_location = proto_builder::oss::SourceLocation::current())
+      : source_location_(source_location) {}
+  explicit AdvancedBuilder(
+      const Advanced& data,
+      proto_builder::oss::SourceLocation source_location = proto_builder::oss::SourceLocation::current())
+      : source_location_(source_location), data_(data) {}
+  explicit AdvancedBuilder(Advanced&& data, proto_builder::oss::SourceLocation source_location =
+                                                proto_builder::oss::SourceLocation::current())
+      : source_location_(source_location), data_(data) {}
+
+  absl::StatusOr<Advanced> Build() const;
+  absl::StatusOr<Advanced> Consume();
+  absl::StatusOr<Advanced> MaybeGetRawData() const;
+
+  operator const Advanced&() const {  // NOLINT
+    if (!status_.ok()) {
+      return Advanced::default_instance();
+    }
+    return data_;
+  }
+
+  bool ok() const { return status_.ok(); }
+
+  absl::Status status() const { return status_; }
+
+  AdvancedBuilder& UpdateStatus(absl::Status status);
+
+  // https://google.github.io/cpp-proto-builder/templates#BEGIN
+
+  AdvancedBuilder& SetText(const std::string& value);
+
+  // https://google.github.io/cpp-proto-builder/templates#END
+
+ private:
+  const proto_builder::oss::SourceLocation source_location_;
+  Advanced data_;
+  mutable absl::Status status_;
+  bool get_raw_data_ = true;
+};
+
+}  // namespace proto_builder::tests
+
+#endif  // PROTO_BUILDER_TESTS_ADVANCED_CC_PROTO_BUILDER_H_

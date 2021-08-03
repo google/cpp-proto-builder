@@ -1,0 +1,59 @@
+// Copyright 2021 The CPP Proto Builder Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// READ: https://google.github.io/cpp-proto-builder
+
+syntax = "proto2";
+
+package proto_builder.tests;
+
+import "proto_builder/proto_builder.proto";
+
+message Validator {
+  optional string address = 1;
+
+  message Fallback {
+    optional string address = 1;
+  }
+
+  repeated Fallback fallback = 2;
+
+  message NotValidated {
+    option (.proto_builder.message) = {
+      use_build: false
+      use_status: false
+      use_validator: false
+    };
+
+    optional string address = 1;
+  }
+
+  repeated NotValidated not_validated = 3;
+
+  map<string, Fallback> named_fallback = 4;
+
+  optional Fallback options = 5 [
+    (.proto_builder.field) = {
+      recurse: false  // This triggers different field generation
+    },
+    (.proto_builder.field) = {
+      type: "std::string"
+      conversion: "[=]{ @type@ result; result.set_address(value); return result; }()"
+    }
+  ];
+
+  // The map value is not a message type, so it should not get a builder based
+  // setter.
+  map<int64, string> other = 6;
+}

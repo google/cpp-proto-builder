@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package proto_builder.oss;
+
+// OtherMessage is not imported to create an error.
+
+message SimpleMessageError final {
+  optional int321 one = 1;
+  optional OtherMessage other = 2;
+}

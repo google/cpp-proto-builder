@@ -1,0 +1,181 @@
+// Copyright 2021 The CPP Proto Builder Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Automatically generated using https://google.github.io/cpp-proto-builder
+
+#ifndef PROTO_BUILDER_TESTS_TEST_CONVERSIONS_BUILDER_H_
+#define PROTO_BUILDER_TESTS_TEST_CONVERSIONS_BUILDER_H_
+
+#include <string>
+#include <utility>
+
+#include "google/protobuf/duration.pb.h"   // IWYU pragma: export
+#include "google/protobuf/timestamp.pb.h"  // IWYU pragma: export
+#include "proto_builder/oss/parse_text_proto.h"
+#include "proto_builder/tests/test_conversions.pb.h"  // IWYU pragma: export
+#include "proto_builder/tests/test_conversions_sub_builder.h"
+#include "absl/strings/string_view.h"
+#include "absl/time/time.h"
+#include "proto_builder/oss/proto_conversion_helpers.h"
+
+namespace proto_builder {
+
+class ConversionsBuilder {
+ public:
+  ConversionsBuilder() = default;
+  explicit ConversionsBuilder(const Conversions& data) : data_(data) {}
+  explicit ConversionsBuilder(Conversions&& data) : data_(data) {}
+
+  operator const Conversions&() const {  // NOLINT
+    return data_;
+  }
+
+  // https://google.github.io/cpp-proto-builder/templates#BEGIN
+
+  ConversionsBuilder& AddLine(const std::string& value);
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, std::string>::value>::type>
+  ConversionsBuilder& AddLines(const Container& values) {
+    for (const auto& v : values) {
+      AddLine(v);
+    }
+    return *this;
+  }
+
+  template <class Item>
+  ConversionsBuilder& AddLines(std::initializer_list<Item> values) {
+    for (const auto& v : values) {
+      AddLine(v);
+    }
+    return *this;
+  }
+
+  ConversionsBuilder& SetTime(const Conversions::Duration& value);
+  ConversionsBuilder& SetTimeInt64Seconds(absl::Duration value);
+  ConversionsBuilder& SetTimeInt64Milliseconds(absl::Duration value);
+  ConversionsBuilder& SetTimeDoubleSeconds(absl::Duration value);
+  ConversionsBuilder& SetTimeDoubleMilliseconds(absl::Duration value);
+  ConversionsBuilder& SetProtoTime(const Conversions::ProtoTime& value);
+  ConversionsBuilder& SetProtoTimeDuration(const absl::Duration& value);
+  ConversionsBuilder& SetProtoTimeTime(const absl::Time& value);
+  ConversionsBuilder& SetOptionalSub(const Conversions::Sub& value);
+  ConversionsBuilder& SetOptionalSub(const char* value);
+  ConversionsBuilder& SetOptionalSubOne(int64_t value);
+  ConversionsBuilder& SetOptionalSubTwo(int64_t value);
+  ConversionsBuilder& AddRepeatedSub1(const Conversions::Sub& value);
+  ConversionsBuilder& AddRepeatedSub1(const char* value);
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, Conversions::Sub>::value>::type>
+  ConversionsBuilder& AddRepeatedSub1(const Container& values) {
+    for (const auto& v : values) {
+      AddRepeatedSub1(v);
+    }
+    return *this;
+  }
+
+  template <class Item>
+  ConversionsBuilder& AddRepeatedSub1(std::initializer_list<Item> values) {
+    for (const auto& v : values) {
+      AddRepeatedSub1(v);
+    }
+    return *this;
+  }
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, Conversions::Sub>::value>::type>
+  ConversionsBuilder& AddRepeatedSub1Text(const Container& values) {
+    for (const auto& v : values) {
+      AddRepeatedSub1(::proto_builder::oss::ParseTextOrDie<Conversions::Sub>(v));
+    }
+    return *this;
+  }
+
+  template <class Item>
+  ConversionsBuilder& AddRepeatedSub1Text(std::initializer_list<Item> values) {
+    for (const auto& v : values) {
+      AddRepeatedSub1(::proto_builder::oss::ParseTextOrDie<Conversions::Sub>(v));
+    }
+    return *this;
+  }
+
+  ConversionsBuilder& AddRepeatedSub2(const Conversions::Sub& value);
+  ConversionsBuilder& AddRepeatedSub2(const char* value);
+  ConversionsBuilder& AddRepeatedSub2(absl::string_view value);
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, Conversions::Sub>::value>::type>
+  ConversionsBuilder& AddRepeatedSub2(const Container& values) {
+    for (const auto& v : values) {
+      AddRepeatedSub2(v);
+    }
+    return *this;
+  }
+
+  template <class Item>
+  ConversionsBuilder& AddRepeatedSub2(std::initializer_list<Item> values) {
+    for (const auto& v : values) {
+      AddRepeatedSub2(v);
+    }
+    return *this;
+  }
+
+  ConversionsBuilder& AddRepeatedSub3(const Conversions_SubBuilder& value);
+  ConversionsBuilder& InsertMymap(const ::google::protobuf::Map<int32_t, std::string>::value_type& key_value_pair);
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, ::google::protobuf::Map<int32_t, std::string>::value_type>::value>::type>
+  ConversionsBuilder& InsertMymap(const Container& key_value_pairs) {
+    data_.mutable_mymap()->insert(key_value_pairs.begin(), key_value_pairs.end());
+    return *this;
+  }
+
+  ConversionsBuilder& InsertMymap(std::initializer_list<::google::protobuf::Map<int32_t, std::string>::value_type> key_value_pairs) {
+    data_.mutable_mymap()->insert(key_value_pairs.begin(), key_value_pairs.end());
+    return *this;
+  }
+
+  ConversionsBuilder& InsertOtherMap(const ::google::protobuf::Map<int32_t, std::string>::value_type& key_value_pair);
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, ::google::protobuf::Map<int32_t, std::string>::value_type>::value>::type>
+  ConversionsBuilder& InsertOtherMap(const Container& key_value_pairs) {
+    for (const auto& v : key_value_pairs) {
+      InsertOtherMap(::google::protobuf::Map<int32_t, std::string>::value_type(v.first, v.second));
+    }
+    return *this;
+  }
+
+  ConversionsBuilder& InsertSubMap(const ::google::protobuf::Map<int32_t, ::proto_builder::Conversions::Sub>::value_type& key_value_pair);
+  ConversionsBuilder& InsertSubMap(const std::pair<::google::protobuf::Map<int32_t, ::proto_builder::Conversions::Sub>::value_type::first_type, absl::string_view>& key_value_pair);
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, ::google::protobuf::Map<int32_t, ::proto_builder::Conversions::Sub>::value_type>::value>::type>
+  ConversionsBuilder& InsertSubMap(const Container& key_value_pairs) {
+    for (const auto& v : key_value_pairs) {
+      InsertSubMap(::google::protobuf::Map<int32_t, ::proto_builder::Conversions::Sub>::value_type(v.first, ::proto_builder::oss::ParseTextOrDie<::google::protobuf::Map<int32_t, ::proto_builder::Conversions::Sub>::value_type::second_type>(v.second)));
+    }
+    return *this;
+  }
+
+  ConversionsBuilder& InsertSubMap(std::initializer_list<std::pair<::google::protobuf::Map<int32_t, ::proto_builder::Conversions::Sub>::value_type::first_type, absl::string_view>> key_value_pairs) {
+    for (const auto& v : key_value_pairs) {
+      InsertSubMap(::google::protobuf::Map<int32_t, ::proto_builder::Conversions::Sub>::value_type(v.first, ::proto_builder::oss::ParseTextOrDie<::google::protobuf::Map<int32_t, ::proto_builder::Conversions::Sub>::value_type::second_type>(v.second)));
+    }
+    return *this;
+  }
+
+  // https://google.github.io/cpp-proto-builder/templates#END
+
+ private:
+  Conversions data_;
+};
+
+}  // namespace proto_builder
+
+#endif  // PROTO_BUILDER_TESTS_TEST_CONVERSIONS_BUILDER_H_

@@ -1,0 +1,99 @@
+// Copyright 2021 The CPP Proto Builder Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// READ: https://google.github.io/cpp-proto-builder
+
+// LINT: ALLOW_GROUPS
+
+syntax = "proto2";
+
+package proto_builder;
+
+import "proto_builder/proto_builder.proto";
+
+message TestOutput {
+  message SubMsg {
+    optional int64 sub_skip11 = 11 [(field) = { output: SKIP }];
+    repeated int64 sub_skip12 = 12 [(field) = { output: SKIP }];
+    optional int64 sub_header21 = 21 [(field) = { output: HEADER }];
+    repeated int64 sub_header22 = 22 [(field) = { output: HEADER }];
+    optional int64 sub_body31 = 31 [(field) = { output: SOURCE }];
+    repeated int64 sub_body32 = 32 [(field) = { output: SOURCE }];
+    optional int64 sub_both41 = 41 [(field) = { output: BOTH }];
+    repeated int64 sub_both42 = 42 [(field) = { output: BOTH }];
+    optional int64 sub_template51 = 51 [(field) = { output: TEMPLATE }];
+    repeated int64 sub_template52 = 52 [(field) = { output: TEMPLATE }];
+    optional int64 sub_foreach61 = 61 [(field) = { output: FOREACH }];
+    repeated int64 sub_foreach62 = 62 [(field) = { output: FOREACH }];
+    optional int64 sub_foreach_add71 = 71 [(field) = { output: FOREACH_ADD }];
+    repeated int64 sub_foreach_add72 = 72 [(field) = { output: FOREACH_ADD }];
+  }
+  optional group SubGroup = 100 {
+    optional int64 sub_skip86 = 86 [(field) = { output: SKIP }];
+    repeated int64 sub_skip87 = 87 [(field) = { output: SKIP }];
+    optional int64 sub_header88 = 88 [(field) = { output: HEADER }];
+    repeated int64 sub_header89 = 89 [(field) = { output: HEADER }];
+    optional int64 sub_body90 = 90 [(field) = { output: SOURCE }];
+    repeated int64 sub_body91 = 91 [(field) = { output: SOURCE }];
+    optional int64 sub_both92 = 92 [(field) = { output: BOTH }];
+    repeated int64 sub_both93 = 93 [(field) = { output: BOTH }];
+    optional int64 sub_template94 = 94 [(field) = { output: TEMPLATE }];
+    repeated int64 sub_template95 = 95 [(field) = { output: TEMPLATE }];
+    optional int64 sub_foreach96 = 96 [(field) = { output: FOREACH }];
+    repeated int64 sub_foreach97 = 97 [(field) = { output: FOREACH }];
+    optional int64 sub_foreach_add98 = 98 [(field) = { output: FOREACH_ADD }];
+    repeated int64 sub_foreach_add99 = 99 [(field) = { output: FOREACH_ADD }];
+  }
+  optional string skip11 = 11 [(field) = { output: SKIP }];
+  repeated string skip12 = 12 [(field) = { output: SKIP }];
+  optional SubMsg skip13 = 13 [(field) = { output: SKIP }];
+  repeated SubMsg skip14 = 14 [(field) = { output: SKIP }];
+  map<int32, int32> skip15 = 15 [(field) = { output: SKIP }];
+  optional string header21 = 21 [(field) = { output: HEADER }];
+  repeated string header22 = 22 [(field) = { output: HEADER }];
+  optional SubMsg header23 = 23 [(field) = { output: HEADER }];
+  repeated SubMsg header24 = 24 [(field) = { output: HEADER }];
+  map<int32, int32> header25 = 25 [(field) = { output: HEADER }];
+  optional string body31 = 31 [(field) = { output: SOURCE }];
+  repeated string body32 = 32 [(field) = { output: SOURCE }];
+  optional SubMsg body33 = 33 [(field) = { output: SOURCE }];
+  repeated SubMsg body34 = 34 [(field) = { output: SOURCE }];
+  map<int32, int32> body35 = 35 [(field) = { output: SOURCE }];
+  optional string both41 = 41 [(field) = { output: BOTH }];
+  repeated string both42 = 42 [(field) = { output: BOTH }];
+  optional SubMsg both43 = 43 [(field) = { output: BOTH }];
+  repeated SubMsg both44 = 44 [(field) = { output: BOTH }];
+  map<int32, int32> both45 = 45 [(field) = { output: BOTH }];
+  optional string template51 = 51 [(field) = { output: TEMPLATE }];
+  repeated string template52 = 52 [(field) = { output: TEMPLATE }];
+  optional SubMsg template53 = 53 [(field) = { output: TEMPLATE }];
+  repeated SubMsg template54 = 54 [(field) = { output: TEMPLATE }];
+  map<int32, int32> template55 = 55 [(field) = { output: TEMPLATE }];
+  optional string foreach61 = 61 [(field) = { output: FOREACH }];
+  repeated string foreach62 = 62 [(field) = { output: FOREACH }];
+  optional SubMsg foreach63 = 63 [(field) = { output: FOREACH }];
+  repeated SubMsg foreach64 = 64 [(field) = { output: FOREACH }];
+  map<int32, int32> foreach65 = 65 [(field) = { output: FOREACH }];
+  optional string foreach_add71 = 71 [(field) = { output: FOREACH_ADD }];
+  repeated string foreach_add72 = 72 [(field) = { output: FOREACH_ADD }];
+  optional SubMsg foreach_add73 = 73 [(field) = { output: FOREACH_ADD }];
+  repeated SubMsg foreach_add74 = 74 [(field) = { output: FOREACH_ADD }];
+  map<int32, int32> foreach_add75 = 75 [(field) = { output: FOREACH_ADD }];
+  optional string initializer_list81 = 81
+      [(field) = { output: INITIALIZER_LIST }];
+  repeated string initializer_list82 = 82
+      [(field) = { output: INITIALIZER_LIST }];
+  map<int32, int32> initializer_list85 = 85
+      [(field) = { output: INITIALIZER_LIST }];
+}

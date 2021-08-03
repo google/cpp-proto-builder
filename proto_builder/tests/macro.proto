@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+package proto_builder.tests;
+
+import "proto_builder/proto_builder.proto";
+
+message Macro {
+  option (proto_builder.message) = {
+    source_include: "proto_builder/tests/predicate_util.h"
+    type_map {
+      key: "IsBetween"
+      value { predicate: "IsBetween<@type@>(@value@, %min%, %max%)" }
+    }
+  };
+
+  optional int64 number = 1 [(proto_builder.field) = {
+    macro: "IsBetween"
+    data { key: "min" value: "25" }
+    data { key: "max" value: "42" }
+  }];
+}

@@ -1,0 +1,53 @@
+// Copyright 2021 The CPP Proto Builder Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// READ: https://google.github.io/cpp-proto-builder
+
+syntax = "proto2";
+
+package proto_builder;
+
+// LINT: ALLOW_GROUPS
+// LINT: LEGACY_NAMES
+
+message TestTypes {
+  message SubMsg {
+    optional int64 one = 1;
+  }
+  enum Enum {
+    A = 1;
+    B = 2;
+  }
+  message Optional {
+    optional double field_double = 1;
+    optional float field_float = 2;
+    optional int64 field_int64 = 3;
+    optional uint64 field_uint64 = 4;
+    optional int32 field_int32 = 5;
+    optional fixed64 field_fixed64 = 6;
+    optional fixed32 field_fixed32 = 7;
+    optional bool field_bool = 8;
+    optional string field_string = 9;
+    optional group FieldGroup = 10 {}
+    optional SubMsg field_message = 11;
+    optional bytes field_bytes = 12;
+    optional uint32 field_uint32 = 13;
+    optional Enum field_enum = 14;
+    optional sfixed32 field_sfixed32 = 15;
+    optional sfixed64 field_sfixed64 = 16;
+    optional sint32 field_sint32 = 17;
+    optional sint64 field_sint64 = 18;
+  }
+  optional Optional optional_types = 1;
+}

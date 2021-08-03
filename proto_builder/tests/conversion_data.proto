@@ -1,0 +1,41 @@
+syntax = "proto2";
+
+package proto_builder.tests;
+
+import "proto_builder/proto_builder.proto";
+
+message ConversionData {
+  option (proto_builder.message) = {
+    source_include: "proto_builder/tests/conversion_data_util.h"
+  };
+
+  optional int64 number = 1 [(proto_builder.field) = {
+    conversion: "GetValueIfBetween<@type@>(@value@, %min%, %max%)"
+    data { key: "min" value: "25" }
+    data { key: "max" value: "42" }
+  }];
+
+  optional int64 ignore_default = 2 [
+    default = 10,
+    (proto_builder.field) = {
+      conversion: "GetValueIfBetween<@type@>(@value@, %min%, %max%)"
+      data { key: "min" value: "25" }
+      data { key: "max" value: "42" }
+    }
+  ];
+
+  optional int64 respect_default = 3 [
+    default = 10,
+    (proto_builder.field) = {
+      conversion: "GetValueIfBetween<@type@>(@value@, %min%, %max%, @default@)"
+      data { key: "min" value: "25" }
+      data { key: "max" value: "42" }
+    }
+  ];
+
+  optional int64 no_default = 4 [(proto_builder.field) = {
+    conversion: "GetValueIfBetween<@type@>(@value@, %min%, %max%, @default@)"
+    data { key: "min" value: "25" }
+    data { key: "max" value: "42" }
+  }];
+}

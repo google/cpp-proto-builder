@@ -1,0 +1,243 @@
+// Copyright 2021 The CPP Proto Builder Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Automatically generated using https://google.github.io/cpp-proto-builder
+
+#ifndef PROTO_BUILDER_TESTS_VALIDATOR_CC_PROTO_BUILDER_H_
+#define PROTO_BUILDER_TESTS_VALIDATOR_CC_PROTO_BUILDER_H_
+
+#include <string>
+#include <utility>
+
+#include "proto_builder/tests/validator.pb.h"  // IWYU pragma: export
+#include "proto_builder/tests/validator.proto.validator.h"
+#include "absl/status/status.h"
+#include "absl/status/statusor.h"
+#include "proto_builder/oss/source_location.h"
+
+
+namespace proto_builder::tests {
+
+class ValidatorBuilder {
+ public:
+  explicit ValidatorBuilder(
+      proto_builder::oss::SourceLocation source_location = proto_builder::oss::SourceLocation::current())
+      : source_location_(source_location) {}
+  explicit ValidatorBuilder(
+      const Validator& data,
+      proto_builder::oss::SourceLocation source_location = proto_builder::oss::SourceLocation::current())
+      : source_location_(source_location), data_(data) {}
+  explicit ValidatorBuilder(
+      Validator&& data,
+      proto_builder::oss::SourceLocation source_location = proto_builder::oss::SourceLocation::current())
+      : source_location_(source_location), data_(data) {}
+
+  absl::StatusOr<Validator> Build() const;
+  absl::StatusOr<Validator> Consume();
+  absl::StatusOr<Validator> MaybeGetRawData() const;
+
+  operator const Validator&() const {  // NOLINT
+    ValidateData();
+    if (!status_.ok()) {
+      return Validator::default_instance();
+    }
+    return data_;
+  }
+
+  bool ok() const {
+    ValidateData();
+    return status_.ok();
+  }
+
+  absl::Status status() const {
+    ValidateData();
+    return status_;
+  }
+
+  ValidatorBuilder& UpdateStatus(absl::Status status);
+
+  // https://google.github.io/cpp-proto-builder/templates#BEGIN
+
+  ValidatorBuilder& SetAddress(const std::string& value);
+  ValidatorBuilder& AddFallback(const Validator::Fallback& value);
+
+  template <
+      class Builder,
+      class = std::enable_if_t<std::is_same_v<
+          std::invoke_result_t<decltype(&Builder::MaybeGetRawData), Builder>,
+          absl::StatusOr<::proto_builder::tests::
+                             Validator::Fallback>>>>
+  ValidatorBuilder& AddFallback(Builder builder) {
+    auto value = std::move(builder).MaybeGetRawData();
+    if (value.ok()) {
+      AddFallback(*std::move(value));
+    } else {
+      UpdateStatus(value.status());
+    }
+    return *this;
+  }
+
+  ValidatorBuilder& AddNotValidated(const Validator::NotValidated& value);
+
+  template <
+      class Builder,
+      class = std::enable_if_t<std::is_same_v<
+          std::invoke_result_t<decltype(&Builder::MaybeGetRawData), Builder>,
+          absl::StatusOr<::proto_builder::tests::
+                             Validator::NotValidated>>>>
+  ValidatorBuilder& AddNotValidated(Builder builder) {
+    auto value = std::move(builder).MaybeGetRawData();
+    if (value.ok()) {
+      AddNotValidated(*std::move(value));
+    } else {
+      UpdateStatus(value.status());
+    }
+    return *this;
+  }
+
+  ValidatorBuilder& InsertNamedFallback(
+      const ::google::protobuf::Map<std::string, ::proto_builder::tests::
+                                           Validator::Fallback>::value_type&
+          key_value_pair);
+
+  template <
+      class Builder,
+      class = std::enable_if_t<std::is_same_v<
+          std::invoke_result_t<decltype(&Builder::MaybeGetRawData), Builder>,
+          absl::StatusOr<::proto_builder::tests::
+                             Validator::Fallback>>>>
+  ValidatorBuilder& InsertNamedFallback(
+      const std::string& key, Builder builder) {
+    auto value = std::move(builder).MaybeGetRawData();
+    if (value.ok()) {
+      InsertNamedFallback({key, *std::move(value)});
+    } else {
+      UpdateStatus(value.status());
+    }
+    return *this;
+  }
+
+  ValidatorBuilder& SetOptions(const Validator::Fallback& value);
+
+  template <
+      class Builder,
+      class = std::enable_if_t<std::is_same_v<
+          std::invoke_result_t<decltype(&Builder::MaybeGetRawData), Builder>,
+          absl::StatusOr<
+              ::proto_builder::tests::Validator::Fallback>>>>
+  ValidatorBuilder& SetOptions(Builder builder) {
+    auto value = std::move(builder).MaybeGetRawData();
+    if (value.ok()) {
+      SetOptions(*std::move(value));
+    } else {
+      UpdateStatus(value.status());
+    }
+    return *this;
+  }
+
+  ValidatorBuilder& SetOptions(const std::string& value);
+  ValidatorBuilder& InsertOther(
+      const ::google::protobuf::Map<int64_t, std::string>::value_type& key_value_pair);
+
+  // https://google.github.io/cpp-proto-builder/templates#END
+
+ protected:
+  void ValidateData() const;
+
+ private:
+  const proto_builder::oss::SourceLocation source_location_;
+  Validator data_;
+  mutable absl::Status status_;
+  bool get_raw_data_ = true;
+};
+
+class Validator_FallbackBuilder {
+ public:
+  explicit Validator_FallbackBuilder(
+      proto_builder::oss::SourceLocation source_location = proto_builder::oss::SourceLocation::current())
+      : source_location_(source_location) {}
+  explicit Validator_FallbackBuilder(
+      const Validator::Fallback& data,
+      proto_builder::oss::SourceLocation source_location = proto_builder::oss::SourceLocation::current())
+      : source_location_(source_location), data_(data) {}
+  explicit Validator_FallbackBuilder(
+      Validator::Fallback&& data,
+      proto_builder::oss::SourceLocation source_location = proto_builder::oss::SourceLocation::current())
+      : source_location_(source_location), data_(data) {}
+
+  absl::StatusOr<Validator::Fallback> Build() const;
+  absl::StatusOr<Validator::Fallback> Consume();
+  absl::StatusOr<Validator::Fallback> MaybeGetRawData() const;
+
+  operator const Validator::Fallback&() const {  // NOLINT
+    ValidateData();
+    if (!status_.ok()) {
+      return Validator::Fallback::default_instance();
+    }
+    return data_;
+  }
+
+  bool ok() const {
+    ValidateData();
+    return status_.ok();
+  }
+
+  absl::Status status() const {
+    ValidateData();
+    return status_;
+  }
+
+  Validator_FallbackBuilder& UpdateStatus(absl::Status status);
+
+  // https://google.github.io/cpp-proto-builder/templates#BEGIN
+
+  Validator_FallbackBuilder& SetAddress(const std::string& value);
+
+  // https://google.github.io/cpp-proto-builder/templates#END
+
+ protected:
+  void ValidateData() const;
+
+ private:
+  const proto_builder::oss::SourceLocation source_location_;
+  Validator::Fallback data_;
+  mutable absl::Status status_;
+  bool get_raw_data_ = true;
+};
+
+class Validator_NotValidatedBuilder {
+ public:
+  Validator_NotValidatedBuilder() = default;
+  explicit Validator_NotValidatedBuilder(const Validator::NotValidated& data)
+      : data_(data) {}
+  explicit Validator_NotValidatedBuilder(Validator::NotValidated&& data)
+      : data_(data) {}
+
+  operator const Validator::NotValidated&() const {  // NOLINT
+    return data_;
+  }
+
+  // https://google.github.io/cpp-proto-builder/templates#BEGIN
+
+  Validator_NotValidatedBuilder& SetAddress(const std::string& value);
+
+  // https://google.github.io/cpp-proto-builder/templates#END
+
+ private:
+  Validator::NotValidated data_;
+};
+
+}  // namespace proto_builder::tests
+
+#endif  // PROTO_BUILDER_TESTS_VALIDATOR_CC_PROTO_BUILDER_H_

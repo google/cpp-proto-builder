@@ -1,0 +1,39 @@
+syntax = "proto2";
+
+package proto_builder.tests;
+
+import "proto_builder/proto_builder.proto";
+
+message Predicate {
+  option (proto_builder.message) = {
+    source_include: "proto_builder/tests/predicate_util.h"
+  };
+
+  optional int64 number = 1 [(proto_builder.field) = {
+    predicate: "IsBetween<@type@>(@value@, %min%, %max%)"
+    data { key: "min" value: "25" }
+    data { key: "max" value: "42" }
+  }];
+}
+
+// The PredicateStatusBuilder differs from the PredicateBuilder by using an
+// additional absl::Status variable for more elaborate state handling.
+// Note that this message does not repeat the 'source_include' annotation as
+// that is only needed onece (and we are lazy here).
+message PredicateStatus {
+  option (proto_builder.message) = {
+    use_status: true
+  };
+
+  optional int64 number = 1 [(proto_builder.field) = {
+    predicate: "IsBetween<@type@>(@value@, %min%, %max%)"
+    data { key: "min" value: "25" }
+    data { key: "max" value: "42" }
+  }];
+
+  map<int64, string> index = 2 [(proto_builder.field) = {
+    predicate: "IsPair(@value@, %key%, %val%)"
+    data { key: "key" value: "25" }
+    data { key: "val" value: "\"yes\"" }
+  }];
+}

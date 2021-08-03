@@ -1,0 +1,75 @@
+  ValidatorBuilder& SetAddress(const std::string& value);
+  ValidatorBuilder& AddFallback(const ::proto_builder::tests::Validator::Fallback& value);
+
+  template <
+      class Builder,
+      class = std::enable_if_t<std::is_same_v<
+          std::invoke_result_t<
+              decltype(&Builder::MaybeGetRawData), Builder>,
+          absl::StatusOr<::proto_builder::tests::Validator::Fallback>>>>
+  ValidatorBuilder& AddFallback(Builder builder) {
+    auto value = std::move(builder).MaybeGetRawData();
+    if (value.ok()) {
+      AddFallback(*std::move(value));
+    } else {
+      UpdateStatus(value.status());
+    }
+    return *this;
+  }
+
+  ValidatorBuilder& AddNotValidated(const ::proto_builder::tests::Validator::NotValidated& value);
+
+  template <
+      class Builder,
+      class = std::enable_if_t<std::is_same_v<
+          std::invoke_result_t<
+              decltype(&Builder::MaybeGetRawData), Builder>,
+          absl::StatusOr<::proto_builder::tests::Validator::NotValidated>>>>
+  ValidatorBuilder& AddNotValidated(Builder builder) {
+    auto value = std::move(builder).MaybeGetRawData();
+    if (value.ok()) {
+      AddNotValidated(*std::move(value));
+    } else {
+      UpdateStatus(value.status());
+    }
+    return *this;
+  }
+
+  ValidatorBuilder& InsertNamedFallback(const ::google::protobuf::Map<std::string, ::proto_builder::tests::Validator::Fallback>::value_type& key_value_pair);
+
+  template <
+      class Builder,
+      class = std::enable_if_t<std::is_same_v<
+          std::invoke_result_t<
+              decltype(&Builder::MaybeGetRawData), Builder>,
+          absl::StatusOr<::proto_builder::tests::Validator::Fallback>>>>
+  ValidatorBuilder& InsertNamedFallback(const std::string& key, Builder builder) {
+    auto value = std::move(builder).MaybeGetRawData();
+    if (value.ok()) {
+      InsertNamedFallback({key, *std::move(value)});
+    } else {
+      UpdateStatus(value.status());
+    }
+    return *this;
+  }
+
+  ValidatorBuilder& SetOptions(const ::proto_builder::tests::Validator::Fallback& value);
+
+  template <
+      class Builder,
+      class = std::enable_if_t<std::is_same_v<
+          std::invoke_result_t<
+              decltype(&Builder::MaybeGetRawData), Builder>,
+          absl::StatusOr<::proto_builder::tests::Validator::Fallback>>>>
+  ValidatorBuilder& SetOptions(Builder builder) {
+    auto value = std::move(builder).MaybeGetRawData();
+    if (value.ok()) {
+      SetOptions(*std::move(value));
+    } else {
+      UpdateStatus(value.status());
+    }
+    return *this;
+  }
+
+  ValidatorBuilder& SetOptions(const std::string& value);
+  ValidatorBuilder& InsertOther(const ::google::protobuf::Map<int64_t, std::string>::value_type& key_value_pair);

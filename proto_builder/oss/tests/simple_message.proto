@@ -1,0 +1,8 @@
+syntax = "proto2";
+
+package proto_builder.oss;
+
+message SimpleMessage {
+  optional int32 one = 1;
+  repeated int32 two = 2;
+}

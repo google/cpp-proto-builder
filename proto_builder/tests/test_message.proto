@@ -1,0 +1,80 @@
+// Copyright 2021 The CPP Proto Builder Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// READ: https://google.github.io/cpp-proto-builder
+
+// LINT: ALLOW_GROUPS
+
+syntax = "proto2";
+
+package proto_builder;
+
+import "proto_builder/proto_builder.proto";
+import "proto_builder/tests/extra_test_message.proto";
+import "proto_builder/tests/map_value_test_message.proto";
+
+// LINT: LEGACY_NAMES
+
+message TestMessage {
+  optional int32 one = 1;
+  repeated int32 two = 2;
+  message Sub {
+    optional string sub_one = 1;
+    repeated string sub_two = 2;
+    optional string __sub__3__ = 3;
+  }
+  optional Sub three = 3;
+  repeated Sub four = 4;
+  optional ExtraTestMessage five = 5;
+  oneof test {
+    int32 six = 6;
+    string seven = 7;
+  }
+  map<int32, string> eight = 8;
+  map<string, Sub> nine = 9;
+  map<string, MapValueTestMessage> sixteen = 16;
+
+  optional group Seventeen = 17 {
+    optional int32 eighteen = 18;
+  }
+
+  optional Sub f19_no_recurse = 19
+      [(proto_builder.field) = { recurse: false }];
+  repeated Sub f20_no_recurse_rep = 20
+      [(proto_builder.field) = { recurse: false }];
+
+  // Reserved keyword tests.
+  optional int32 namespace = 11;
+  repeated int32 and = 12;
+  optional TestMessage or = 13;
+  repeated TestMessage not = 14;
+  optional int32 operator = 15;
+
+  // string type juggling
+  optional string string21 = 21;
+  optional string string22 = 22
+      [(proto_builder.field) = { type: "string" }];
+  optional string string23 = 23
+      [(proto_builder.field) = { type: "bytes" }];
+  optional string string24 = 24
+      [(proto_builder.field) = { type: "@absl::string_view" }];
+  // bytes should behave like string
+  optional bytes bytes25 = 25;
+  optional bytes bytes26 = 26
+      [(proto_builder.field) = { type: "string" }];
+  optional bytes bytes27 = 27
+      [(proto_builder.field) = { type: "bytes" }];
+  optional bytes bytes28 = 28
+      [(proto_builder.field) = { type: "@absl::string_view" }];
+}

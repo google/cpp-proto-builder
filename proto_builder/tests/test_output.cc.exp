@@ -1,0 +1,194 @@
+TestOutputBuilder& TestOutputBuilder::SetSubgroup(const ::proto_builder::TestOutput::SubGroup& value) {
+  *data_.mutable_subgroup() = value;
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetSubgroupSubBody90(int64_t value) {
+  data_.mutable_subgroup()->set_sub_body90(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddSubgroupSubBody91(int64_t value) {
+  data_.mutable_subgroup()->add_sub_body91(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetSubgroupSubBoth92(int64_t value) {
+  data_.mutable_subgroup()->set_sub_both92(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddSubgroupSubBoth93(int64_t value) {
+  data_.mutable_subgroup()->add_sub_both93(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetHeader23SubBody31(int64_t value) {
+  data_.mutable_header23()->set_sub_body31(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddHeader23SubBody32(int64_t value) {
+  data_.mutable_header23()->add_sub_body32(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetHeader23SubBoth41(int64_t value) {
+  data_.mutable_header23()->set_sub_both41(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddHeader23SubBoth42(int64_t value) {
+  data_.mutable_header23()->add_sub_both42(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetBody31(const std::string& value) {
+  data_.set_body31(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddBody32(const std::string& value) {
+  data_.add_body32(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetBody33(const ::proto_builder::TestOutput::SubMsg& value) {
+  *data_.mutable_body33() = value;
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetBody33SubBody31(int64_t value) {
+  data_.mutable_body33()->set_sub_body31(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddBody33SubBody32(int64_t value) {
+  data_.mutable_body33()->add_sub_body32(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetBody33SubBoth41(int64_t value) {
+  data_.mutable_body33()->set_sub_both41(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddBody33SubBoth42(int64_t value) {
+  data_.mutable_body33()->add_sub_both42(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddBody34(const ::proto_builder::TestOutput::SubMsg& value) {
+  *data_.add_body34() = value;
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::InsertBody35(const ::google::protobuf::Map<int32_t, int32_t>::value_type& key_value_pair) {
+  data_.mutable_body35()->insert(key_value_pair);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetBoth41(const std::string& value) {
+  data_.set_both41(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddBoth42(const std::string& value) {
+  data_.add_both42(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetBoth43(const ::proto_builder::TestOutput::SubMsg& value) {
+  *data_.mutable_both43() = value;
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetBoth43SubBody31(int64_t value) {
+  data_.mutable_both43()->set_sub_body31(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddBoth43SubBody32(int64_t value) {
+  data_.mutable_both43()->add_sub_body32(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetBoth43SubBoth41(int64_t value) {
+  data_.mutable_both43()->set_sub_both41(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddBoth43SubBoth42(int64_t value) {
+  data_.mutable_both43()->add_sub_both42(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddBoth44(const ::proto_builder::TestOutput::SubMsg& value) {
+  *data_.add_both44() = value;
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::InsertBoth45(const ::google::protobuf::Map<int32_t, int32_t>::value_type& key_value_pair) {
+  data_.mutable_both45()->insert(key_value_pair);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetTemplate53SubBody31(int64_t value) {
+  data_.mutable_template53()->set_sub_body31(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddTemplate53SubBody32(int64_t value) {
+  data_.mutable_template53()->add_sub_body32(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetTemplate53SubBoth41(int64_t value) {
+  data_.mutable_template53()->set_sub_both41(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddTemplate53SubBoth42(int64_t value) {
+  data_.mutable_template53()->add_sub_both42(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetForeach63SubBody31(int64_t value) {
+  data_.mutable_foreach63()->set_sub_body31(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddForeach63SubBody32(int64_t value) {
+  data_.mutable_foreach63()->add_sub_body32(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetForeach63SubBoth41(int64_t value) {
+  data_.mutable_foreach63()->set_sub_both41(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddForeach63SubBoth42(int64_t value) {
+  data_.mutable_foreach63()->add_sub_both42(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetForeachAdd73SubBody31(int64_t value) {
+  data_.mutable_foreach_add73()->set_sub_body31(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddForeachAdd73SubBody32(int64_t value) {
+  data_.mutable_foreach_add73()->add_sub_body32(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::SetForeachAdd73SubBoth41(int64_t value) {
+  data_.mutable_foreach_add73()->set_sub_both41(value);
+  return *this;
+}
+
+TestOutputBuilder& TestOutputBuilder::AddForeachAdd73SubBoth42(int64_t value) {
+  data_.mutable_foreach_add73()->add_sub_both42(value);
+  return *this;
+}

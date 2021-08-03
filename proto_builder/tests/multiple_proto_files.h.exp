@@ -1,0 +1,97 @@
+// Copyright 2021 The CPP Proto Builder Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Automatically generated using https://google.github.io/cpp-proto-builder
+
+#ifndef PROTO_BUILDER_TESTS_MULTIPLE_PROTO_FILES_CC_PROTO_BUILDER_H_
+#define PROTO_BUILDER_TESTS_MULTIPLE_PROTO_FILES_CC_PROTO_BUILDER_H_
+
+#include <string>
+
+#include "proto_builder/tests/multiple_proto_files_1.pb.h"  // IWYU pragma: export
+#include "proto_builder/tests/multiple_proto_files_2.pb.h"  // IWYU pragma: export
+
+namespace proto_builder {
+
+class MessageFromFirstFileBuilder {
+ public:
+  MessageFromFirstFileBuilder() = default;
+  explicit MessageFromFirstFileBuilder(const MessageFromFirstFile& data)
+      : data_(data) {}
+  explicit MessageFromFirstFileBuilder(MessageFromFirstFile&& data)
+      : data_(data) {}
+
+  operator const MessageFromFirstFile&() const {  // NOLINT
+    return data_;
+  }
+
+  // https://google.github.io/cpp-proto-builder/templates#BEGIN
+
+  MessageFromFirstFileBuilder& SetField(const std::string& value);
+
+  // https://google.github.io/cpp-proto-builder/templates#END
+
+ private:
+  MessageFromFirstFile data_;
+};
+
+class MessageFromSecondFileBuilder {
+ public:
+  MessageFromSecondFileBuilder() = default;
+  explicit MessageFromSecondFileBuilder(const MessageFromSecondFile& data)
+      : data_(data) {}
+  explicit MessageFromSecondFileBuilder(MessageFromSecondFile&& data)
+      : data_(data) {}
+
+  operator const MessageFromSecondFile&() const {  // NOLINT
+    return data_;
+  }
+
+  // https://google.github.io/cpp-proto-builder/templates#BEGIN
+
+  MessageFromSecondFileBuilder& SetField(const std::string& value);
+
+  // https://google.github.io/cpp-proto-builder/templates#END
+
+ private:
+  MessageFromSecondFile data_;
+};
+
+class AnotherMessageFromSecondFileBuilder {
+ public:
+  AnotherMessageFromSecondFileBuilder() = default;
+  explicit AnotherMessageFromSecondFileBuilder(
+      const AnotherMessageFromSecondFile& data)
+      : data_(data) {}
+  explicit AnotherMessageFromSecondFileBuilder(
+      AnotherMessageFromSecondFile&& data)
+      : data_(data) {}
+
+  operator const AnotherMessageFromSecondFile&() const {  // NOLINT
+    return data_;
+  }
+
+  // https://google.github.io/cpp-proto-builder/templates#BEGIN
+
+  AnotherMessageFromSecondFileBuilder& SetField(const std::string& value);
+
+  // https://google.github.io/cpp-proto-builder/templates#END
+
+ private:
+  AnotherMessageFromSecondFile data_;
+};
+
+}  // namespace proto_builder
+
+#endif  // PROTO_BUILDER_TESTS_MULTIPLE_PROTO_FILES_CC_PROTO_BUILDER_H_

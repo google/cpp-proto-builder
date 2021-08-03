@@ -1,0 +1,228 @@
+// Copyright 2021 The CPP Proto Builder Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// READ: https://google.github.io/cpp-proto-builder
+
+syntax = "proto2";
+
+package proto_builder;
+
+import "google/protobuf/descriptor.proto";
+
+// option jspb_use_correct_proto2_semantics = false;  // Link to jspb-correct-proto2 removed.
+option java_package = "com.google.rpc2.contrib.protobuilder";
+option java_outer_classname = "ProtoBuilderProtoHolder";
+option cc_enable_arenas = true;
+// option go_api_flag = "OPEN_TO_OPAQUE_HYBRID";  // See http://Link to go-api-flag removed..
+
+// READ: https://google.github.io/cpp-proto-builder#FieldBuilderOptions
+message FieldBuilderOptions {
+  // Output mode for code generation.
+  enum OutputMode {
+    SKIP = 0;         // Do not generate any code.
+    HEADER = 1;       // Generate the header only.
+    SOURCE = 2;       // Generate the source only.
+    BOTH = 3;         // Generate header and source.
+    TEMPLATE = 4;     // Generate template code for the header.
+    FOREACH = 5;      // Generate template code with foreach assignment.
+    FOREACH_ADD = 6;  // Generate template code with foreach Add*() semantics.
+                      // This requires that a default Add*() is available.
+    INITIALIZER_LIST = 7;  // Generate template code for std::initializer_list.
+                           // This requires that a default Add*() is available.
+  }
+
+  // What code to generate/output.
+  optional OutputMode output = 1 [default = BOTH];
+
+  // The right part of the name for message fields or generated access methods.
+  // All setter methods for non repeated fields start with "Set" and repeated
+  // fields with "Add". That initial part will be followed by the root_name
+  // from the top level proto message. After that follows the list of message
+  // type builder names. And finally the name of the inner most field. Thus,
+  // the name field is never the actual full name. See the following example:
+  //
+  //   message One {
+  //     optional int first = 1
+  //     message Two {
+  //       repeated int field_two = 1;
+  //       message Three {
+  //         optional int fourth = 1
+  //       }
+  //       optional Three third = 2;
+  //     }
+  //     optional Two second = 2;
+  //   }
+  //
+  //   SetFirst(int value);
+  //   AddSecondFieldTwo(int value);
+  //   SetSecondThirdFourth(int value);
+  //
+  // It is not allowed to set 'name' in the global config.
+  optional string name = 2;
+
+  // First, this controls the type of the setter argument in case it should be
+  // different from the field type. This does neither affect TEMPLATE which
+  // uses "Value" nor does it affect FOREACH/_ADD where the type is "Container"
+  // or INITIALIZER_LIST which uses std::initializer_list. Second, this controls
+  // type conversions. If a conversion for this type exists then it will be
+  // applied always (even for modes TEMPLATE/FOREACH/_ADD/INITIALIZER_LIST).
+  optional string type = 3;
+
+  // While 'type' specifies the raw c++ type, the 'decorated_type' allows to
+  // specify exactly how the types are transported. Meaning this will be used
+  // as the parameter type, for instance 'string' vs. 'const string&'.
+  // By default all non enum types that are in a namespace or sub-type use
+  // 'const ...&' decoration (detected by presence of '::').
+  optional string decorated_type = 4;
+
+  // This allows to provide a conversion function to convert from the specified
+  // type to the field's actual type. The provided string has two placeholders:
+  // @type@: will be replaced with the field type (useful as template parameter)
+  // @value@: will be replaced with the value or variable to be converted.
+  // @default@: The default field value.
+  optional string conversion = 5;
+
+  // If given, skip the parameter and instead use the provided value.
+  // In templating if `param` is also available, this adds `%type"+param=value"`
+  // template variable.
+  optional string value = 6;
+
+  // A list of includes necessary for the type or conversion can be added here.
+  // Includes listed here are added to the header files (.h).
+  repeated string include = 7;
+
+  // A list of includes necessary for the type or conversion can be added here.
+  // Includes listed here are added to the source files (.cc).
+  repeated string source_include = 9;
+
+  // Whether proto builder should recurse into a message field.
+  optional bool recurse = 8 [default = true];
+
+  // List of library labels needed.
+  repeated string dependency = 10;
+
+  // This adds an additional SourceLocation default parameter to the setters.
+  optional bool add_source_location = 11;
+
+  // Only used in templating for builtin types. This adds the `%type"+param"`
+  // template variable.
+  optional string param = 12;
+
+  // Types marked as `automatic` will automatically be triggered and replace the
+  // the original type parameter with their `type` value. This is useful, if
+  // outside of proto a sub-message has a different type, or in other words if
+  // the sub-message proto is the serialization format for another type and that
+  // other type should be used everywhere outside serialization.
+  // NOTE: Unless explicitly set, `resurse` will be `false`.
+  optional bool automatic = 13;
+
+  // Used in conversions. Each key gets enclosed in `%` and that string will
+  // be replaced with the value.
+  map<string, string> data = 14;
+
+  // Marks the setter as 'override'.
+  optional bool override = 15;
+
+  // Allows to implement per field predicates.
+  // The code is generated similar to `conversion` but requires a different
+  // interface for the provided function. Instead of returning the value, the
+  // function needs to return an `absl::Status` result.
+  optional string predicate = 16;
+
+  // Use the referenced `macro` as a base for the configuration.
+  optional string macro = 17;
+}
+
+// READ: https://google.github.io/cpp-proto-builder#MessageBuilderOptions
+// READ: https://google.github.io/cpp-proto-builder/templates#MessageBuilderOptions
+message MessageBuilderOptions {
+  // The name of the generated class. By default the name of the generated
+  // builder is the message type name followed by "Builder". So the builder
+  // for the message "Foo" will be named "FooBuilder".
+  // Available as {{CLASS_NAME}}.
+  optional string class_name = 1;
+
+  // The name under which root data is accessible.
+  // For structs and classes add the '.'. For pointers add the '->'.
+  // Available as {{ROOT_DATA}} with '.' or '->' removed.
+  optional string root_data = 2 [default = "data_."];
+
+  // The root name prefix. For further explanation see FieldBuilderOptions.name.
+  optional string root_name = 3;
+
+  // Automatically adds two methods for the default template:
+  // . `absl::StatusOr<ProtoType> Build() const`
+  // . `absl::StatusOr<ProtoType> Consume()`.
+  // This also enables `use_status`.
+  // Available via section {{#USE_BUILD}}.
+  optional bool use_build = 4;
+
+  // Adds a conversion operator to the default template.
+  // Available via section {{#USE_CONVERSION}}.
+  optional bool use_conversion = 5 [default = true];
+
+  // Adds an 'absl::Status status_' member and related handling for the default
+  // template. Otherwise it is assumed that a member `status_` is present.
+  // Available via section {{#USE_STATUS}}.
+  optional bool use_status = 6;
+
+  // Adds 'void ValidateData();' method, that validates the current data and
+  // sets status_ accordingly. Automatically activates `use_build` and
+  // `use_status`. Available via section {{#USE_VALIDATOR}}. Also sets
+  // {{VALIDATE_DATA}} to "ValidateData();"
+  optional bool use_validator = 7;
+
+  // Allows to add includes to the generated header.
+  repeated string include = 8;
+
+  // Allows to add includes to the geneated source.
+  repeated string source_include = 9;
+
+  reserved 10;
+  reserved "dependency";
+
+  // Allows to specify base classes for the builder.
+  repeated string base_class = 11;
+
+  // Same as `include` but not used for interfaces.
+  repeated string builder_include = 12;
+
+  // Additional configurations to be used as direct types or macros which will
+  // get merged into the field configurations.
+  map<string, FieldBuilderOptions> type_map = 13;
+}
+
+extend google.protobuf.MessageOptions {
+  optional MessageBuilderOptions message = 160972345;
+}
+
+extend google.protobuf.FieldOptions {
+  repeated FieldBuilderOptions field = 161054567;
+}
+
+message ProtoBuilderConfig {
+  // The type map keyed on type names, or made up reference names.
+  // A field's FieldBuilderOptions.type is looked up in this map.
+  // If found the mapped FieldBuilderOptions and the field's options
+  // get merged with the latter overriding the former (explicit values win).
+  // The merged type will be the type from this map since the explicit type
+  // was only the lookup key for the mapped type.
+  //
+  // All keys starting with '@' denote type aliases for well known types
+  // provided by proto_builder.
+  //
+  // All keys starting with '%' are special internal types. They cannot be used
+  // to configure a setter or otherwise participate in value conversions.
+  map<string, FieldBuilderOptions> type_map = 1;
+}

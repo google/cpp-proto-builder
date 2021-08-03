@@ -1,0 +1,83 @@
+// Copyright 2021 The CPP Proto Builder Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Automatically generated using https://google.github.io/cpp-proto-builder
+
+#include <utility>
+
+#include "proto_builder/tests/predicate_cc_proto_builder.h"
+
+#include "proto_builder/tests/predicate_util.h"
+
+namespace proto_builder::tests {
+
+// https://google.github.io/cpp-proto-builder/templates#BEGIN
+
+PredicateBuilder& PredicateBuilder::SetNumber(int64_t value) {
+  if (!IsBetween<int64_t>(value, 25, 42).ok()) {
+    return *this;
+  }
+  data_.set_number(value);
+  return *this;
+}
+
+absl::StatusOr<PredicateStatus> PredicateStatusBuilder::MaybeGetRawData()
+    const {
+  if (get_raw_data_) {
+    return data_;
+  } else {
+    return status_;
+  }
+}
+
+PredicateStatusBuilder& PredicateStatusBuilder::UpdateStatus(
+    absl::Status status) {
+  status_ = std::move(status);
+  if (status_.ok()) {
+    get_raw_data_ = true;
+  } else {
+    get_raw_data_ = false;
+    AddSourceLocationToStatus(source_location_, status_);
+  }
+  return *this;
+}
+
+PredicateStatusBuilder& PredicateStatusBuilder::SetNumber(int64_t value) {
+  const auto status = IsBetween<int64_t>(value, 25, 42);
+  if (!status.ok()) {
+    if (status_.ok()) {
+      UpdateStatus(status);
+    }
+    return *this;
+  }
+  data_.set_number(value);
+  return *this;
+}
+
+PredicateStatusBuilder& PredicateStatusBuilder::InsertIndex(
+    const ::google::protobuf::Map<int64_t, std::string>::value_type& key_value_pair) {
+  const auto status = IsPair(key_value_pair, 25, "yes");
+  if (!status.ok()) {
+    if (status_.ok()) {
+      UpdateStatus(status);
+    }
+    return *this;
+  }
+  data_.mutable_index()->insert(key_value_pair);
+  return *this;
+}
+
+// https://google.github.io/cpp-proto-builder/templates#END
+
+}  // namespace proto_builder::tests

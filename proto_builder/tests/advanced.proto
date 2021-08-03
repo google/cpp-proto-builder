@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package proto_builder.tests;
+
+import "proto_builder/proto_builder.proto";
+
+message Advanced {
+  option (proto_builder.message) = {
+    use_build: true
+  };
+
+  optional string text = 1;
+}

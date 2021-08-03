@@ -1,0 +1,407 @@
+  TestOutputBuilder& SetSubgroup(const ::proto_builder::TestOutput::SubGroup& value);
+  TestOutputBuilder& SetSubgroupSubHeader88(int64_t value);
+  TestOutputBuilder& AddSubgroupSubHeader89(int64_t value);
+  TestOutputBuilder& SetSubgroupSubBoth92(int64_t value);
+  TestOutputBuilder& AddSubgroupSubBoth93(int64_t value);
+
+  template <class Value>
+  TestOutputBuilder& SetSubgroupSubTemplate94(const Value& value) {
+    data_.mutable_subgroup()->set_sub_template94(value);
+    return *this;
+  }
+
+  template <class Value>
+  TestOutputBuilder& AddSubgroupSubTemplate95(const Value& value) {
+    data_.mutable_subgroup()->add_sub_template95(value);
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH' with a non repeated field.
+  #error Field: proto_builder.TestOutput.SubGroup.sub_foreach96
+  #error FieldBuilderOptions: <output: FOREACH>
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, int64_t>::value>::type>
+  TestOutputBuilder& AddSubgroupSubForeach97(const Container& values) {
+    for (const auto& v : values) {
+      data_.mutable_subgroup()->add_sub_foreach97(v);
+    }
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH_ADD' with a non repeated field.
+  #error Field: proto_builder.TestOutput.SubGroup.sub_foreach_add98
+  #error FieldBuilderOptions: <output: FOREACH_ADD>
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, int64_t>::value>::type>
+  TestOutputBuilder& AddSubgroupSubForeachAdd99(const Container& values) {
+    for (const auto& v : values) {
+      AddSubgroupSubForeachAdd99(v);
+    }
+    return *this;
+  }
+
+  TestOutputBuilder& SetHeader21(const std::string& value);
+  TestOutputBuilder& AddHeader22(const std::string& value);
+  TestOutputBuilder& SetHeader23(const ::proto_builder::TestOutput::SubMsg& value);
+  TestOutputBuilder& SetHeader23SubHeader21(int64_t value);
+  TestOutputBuilder& AddHeader23SubHeader22(int64_t value);
+  TestOutputBuilder& SetHeader23SubBoth41(int64_t value);
+  TestOutputBuilder& AddHeader23SubBoth42(int64_t value);
+
+  template <class Value>
+  TestOutputBuilder& SetHeader23SubTemplate51(const Value& value) {
+    data_.mutable_header23()->set_sub_template51(value);
+    return *this;
+  }
+
+  template <class Value>
+  TestOutputBuilder& AddHeader23SubTemplate52(const Value& value) {
+    data_.mutable_header23()->add_sub_template52(value);
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH' with a non repeated field.
+  #error Field: proto_builder.TestOutput.SubMsg.sub_foreach61
+  #error FieldBuilderOptions: <output: FOREACH>
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, int64_t>::value>::type>
+  TestOutputBuilder& AddHeader23SubForeach62(const Container& values) {
+    for (const auto& v : values) {
+      data_.mutable_header23()->add_sub_foreach62(v);
+    }
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH_ADD' with a non repeated field.
+  #error Field: proto_builder.TestOutput.SubMsg.sub_foreach_add71
+  #error FieldBuilderOptions: <output: FOREACH_ADD>
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, int64_t>::value>::type>
+  TestOutputBuilder& AddHeader23SubForeachAdd72(const Container& values) {
+    for (const auto& v : values) {
+      AddHeader23SubForeachAdd72(v);
+    }
+    return *this;
+  }
+
+  TestOutputBuilder& AddHeader24(const ::proto_builder::TestOutput::SubMsg& value);
+  TestOutputBuilder& InsertHeader25(const ::google::protobuf::Map<int32_t, int32_t>::value_type& key_value_pair);
+  TestOutputBuilder& SetBody33SubHeader21(int64_t value);
+  TestOutputBuilder& AddBody33SubHeader22(int64_t value);
+  TestOutputBuilder& SetBody33SubBoth41(int64_t value);
+  TestOutputBuilder& AddBody33SubBoth42(int64_t value);
+
+  template <class Value>
+  TestOutputBuilder& SetBody33SubTemplate51(const Value& value) {
+    data_.mutable_body33()->set_sub_template51(value);
+    return *this;
+  }
+
+  template <class Value>
+  TestOutputBuilder& AddBody33SubTemplate52(const Value& value) {
+    data_.mutable_body33()->add_sub_template52(value);
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH' with a non repeated field.
+  #error Field: proto_builder.TestOutput.SubMsg.sub_foreach61
+  #error FieldBuilderOptions: <output: FOREACH>
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, int64_t>::value>::type>
+  TestOutputBuilder& AddBody33SubForeach62(const Container& values) {
+    for (const auto& v : values) {
+      data_.mutable_body33()->add_sub_foreach62(v);
+    }
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH_ADD' with a non repeated field.
+  #error Field: proto_builder.TestOutput.SubMsg.sub_foreach_add71
+  #error FieldBuilderOptions: <output: FOREACH_ADD>
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, int64_t>::value>::type>
+  TestOutputBuilder& AddBody33SubForeachAdd72(const Container& values) {
+    for (const auto& v : values) {
+      AddBody33SubForeachAdd72(v);
+    }
+    return *this;
+  }
+
+  TestOutputBuilder& SetBoth41(const std::string& value);
+  TestOutputBuilder& AddBoth42(const std::string& value);
+  TestOutputBuilder& SetBoth43(const ::proto_builder::TestOutput::SubMsg& value);
+  TestOutputBuilder& SetBoth43SubHeader21(int64_t value);
+  TestOutputBuilder& AddBoth43SubHeader22(int64_t value);
+  TestOutputBuilder& SetBoth43SubBoth41(int64_t value);
+  TestOutputBuilder& AddBoth43SubBoth42(int64_t value);
+
+  template <class Value>
+  TestOutputBuilder& SetBoth43SubTemplate51(const Value& value) {
+    data_.mutable_both43()->set_sub_template51(value);
+    return *this;
+  }
+
+  template <class Value>
+  TestOutputBuilder& AddBoth43SubTemplate52(const Value& value) {
+    data_.mutable_both43()->add_sub_template52(value);
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH' with a non repeated field.
+  #error Field: proto_builder.TestOutput.SubMsg.sub_foreach61
+  #error FieldBuilderOptions: <output: FOREACH>
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, int64_t>::value>::type>
+  TestOutputBuilder& AddBoth43SubForeach62(const Container& values) {
+    for (const auto& v : values) {
+      data_.mutable_both43()->add_sub_foreach62(v);
+    }
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH_ADD' with a non repeated field.
+  #error Field: proto_builder.TestOutput.SubMsg.sub_foreach_add71
+  #error FieldBuilderOptions: <output: FOREACH_ADD>
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, int64_t>::value>::type>
+  TestOutputBuilder& AddBoth43SubForeachAdd72(const Container& values) {
+    for (const auto& v : values) {
+      AddBoth43SubForeachAdd72(v);
+    }
+    return *this;
+  }
+
+  TestOutputBuilder& AddBoth44(const ::proto_builder::TestOutput::SubMsg& value);
+  TestOutputBuilder& InsertBoth45(const ::google::protobuf::Map<int32_t, int32_t>::value_type& key_value_pair);
+
+  template <class Value>
+  TestOutputBuilder& SetTemplate51(const Value& value) {
+    data_.set_template51(value);
+    return *this;
+  }
+
+  template <class Value>
+  TestOutputBuilder& AddTemplate52(const Value& value) {
+    data_.add_template52(value);
+    return *this;
+  }
+
+  template <class Value>
+  TestOutputBuilder& SetTemplate53(const Value& value) {
+    *data_.mutable_template53() = value;
+    return *this;
+  }
+
+  TestOutputBuilder& SetTemplate53SubHeader21(int64_t value);
+  TestOutputBuilder& AddTemplate53SubHeader22(int64_t value);
+  TestOutputBuilder& SetTemplate53SubBoth41(int64_t value);
+  TestOutputBuilder& AddTemplate53SubBoth42(int64_t value);
+
+  template <class Value>
+  TestOutputBuilder& SetTemplate53SubTemplate51(const Value& value) {
+    data_.mutable_template53()->set_sub_template51(value);
+    return *this;
+  }
+
+  template <class Value>
+  TestOutputBuilder& AddTemplate53SubTemplate52(const Value& value) {
+    data_.mutable_template53()->add_sub_template52(value);
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH' with a non repeated field.
+  #error Field: proto_builder.TestOutput.SubMsg.sub_foreach61
+  #error FieldBuilderOptions: <output: FOREACH>
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, int64_t>::value>::type>
+  TestOutputBuilder& AddTemplate53SubForeach62(const Container& values) {
+    for (const auto& v : values) {
+      data_.mutable_template53()->add_sub_foreach62(v);
+    }
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH_ADD' with a non repeated field.
+  #error Field: proto_builder.TestOutput.SubMsg.sub_foreach_add71
+  #error FieldBuilderOptions: <output: FOREACH_ADD>
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, int64_t>::value>::type>
+  TestOutputBuilder& AddTemplate53SubForeachAdd72(const Container& values) {
+    for (const auto& v : values) {
+      AddTemplate53SubForeachAdd72(v);
+    }
+    return *this;
+  }
+
+  template <class Value>
+  TestOutputBuilder& AddTemplate54(const Value& value) {
+    *data_.add_template54() = value;
+    return *this;
+  }
+
+  template <class Value>
+  TestOutputBuilder& InsertTemplate55(const Value& key_value_pair) {
+    data_.mutable_template55()->insert(key_value_pair);
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH' with a non repeated field.
+  #error Field: proto_builder.TestOutput.foreach61
+  #error FieldBuilderOptions: <output: FOREACH>
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, std::string>::value>::type>
+  TestOutputBuilder& AddForeach62(const Container& values) {
+    for (const auto& v : values) {
+      data_.add_foreach62(v);
+    }
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH' with a non repeated field.
+  #error Field: proto_builder.TestOutput.foreach63
+  #error FieldBuilderOptions: <output: FOREACH>
+
+  TestOutputBuilder& SetForeach63SubHeader21(int64_t value);
+  TestOutputBuilder& AddForeach63SubHeader22(int64_t value);
+  TestOutputBuilder& SetForeach63SubBoth41(int64_t value);
+  TestOutputBuilder& AddForeach63SubBoth42(int64_t value);
+
+  template <class Value>
+  TestOutputBuilder& SetForeach63SubTemplate51(const Value& value) {
+    data_.mutable_foreach63()->set_sub_template51(value);
+    return *this;
+  }
+
+  template <class Value>
+  TestOutputBuilder& AddForeach63SubTemplate52(const Value& value) {
+    data_.mutable_foreach63()->add_sub_template52(value);
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH' with a non repeated field.
+  #error Field: proto_builder.TestOutput.SubMsg.sub_foreach61
+  #error FieldBuilderOptions: <output: FOREACH>
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, int64_t>::value>::type>
+  TestOutputBuilder& AddForeach63SubForeach62(const Container& values) {
+    for (const auto& v : values) {
+      data_.mutable_foreach63()->add_sub_foreach62(v);
+    }
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH_ADD' with a non repeated field.
+  #error Field: proto_builder.TestOutput.SubMsg.sub_foreach_add71
+  #error FieldBuilderOptions: <output: FOREACH_ADD>
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, int64_t>::value>::type>
+  TestOutputBuilder& AddForeach63SubForeachAdd72(const Container& values) {
+    for (const auto& v : values) {
+      AddForeach63SubForeachAdd72(v);
+    }
+    return *this;
+  }
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, ::proto_builder::TestOutput::SubMsg>::value>::type>
+  TestOutputBuilder& AddForeach64(const Container& values) {
+    for (const auto& v : values) {
+      *data_.add_foreach64() = v;
+    }
+    return *this;
+  }
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, ::google::protobuf::Map<int32_t, int32_t>::value_type>::value>::type>
+  TestOutputBuilder& InsertForeach65(const Container& key_value_pairs) {
+    data_.mutable_foreach65()->insert(key_value_pairs.begin(), key_value_pairs.end());
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH_ADD' with a non repeated field.
+  #error Field: proto_builder.TestOutput.foreach_add71
+  #error FieldBuilderOptions: <output: FOREACH_ADD>
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, std::string>::value>::type>
+  TestOutputBuilder& AddForeachAdd72(const Container& values) {
+    for (const auto& v : values) {
+      AddForeachAdd72(v);
+    }
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH_ADD' with a non repeated field.
+  #error Field: proto_builder.TestOutput.foreach_add73
+  #error FieldBuilderOptions: <output: FOREACH_ADD>
+
+  TestOutputBuilder& SetForeachAdd73SubHeader21(int64_t value);
+  TestOutputBuilder& AddForeachAdd73SubHeader22(int64_t value);
+  TestOutputBuilder& SetForeachAdd73SubBoth41(int64_t value);
+  TestOutputBuilder& AddForeachAdd73SubBoth42(int64_t value);
+
+  template <class Value>
+  TestOutputBuilder& SetForeachAdd73SubTemplate51(const Value& value) {
+    data_.mutable_foreach_add73()->set_sub_template51(value);
+    return *this;
+  }
+
+  template <class Value>
+  TestOutputBuilder& AddForeachAdd73SubTemplate52(const Value& value) {
+    data_.mutable_foreach_add73()->add_sub_template52(value);
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH' with a non repeated field.
+  #error Field: proto_builder.TestOutput.SubMsg.sub_foreach61
+  #error FieldBuilderOptions: <output: FOREACH>
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, int64_t>::value>::type>
+  TestOutputBuilder& AddForeachAdd73SubForeach62(const Container& values) {
+    for (const auto& v : values) {
+      data_.mutable_foreach_add73()->add_sub_foreach62(v);
+    }
+    return *this;
+  }
+
+  #error Cannot use 'output: FOREACH_ADD' with a non repeated field.
+  #error Field: proto_builder.TestOutput.SubMsg.sub_foreach_add71
+  #error FieldBuilderOptions: <output: FOREACH_ADD>
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, int64_t>::value>::type>
+  TestOutputBuilder& AddForeachAdd73SubForeachAdd72(const Container& values) {
+    for (const auto& v : values) {
+      AddForeachAdd73SubForeachAdd72(v);
+    }
+    return *this;
+  }
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, ::proto_builder::TestOutput::SubMsg>::value>::type>
+  TestOutputBuilder& AddForeachAdd74(const Container& values) {
+    for (const auto& v : values) {
+      AddForeachAdd74(v);
+    }
+    return *this;
+  }
+
+  template <class Container, class = typename std::enable_if<!std::is_convertible<Container, ::google::protobuf::Map<int32_t, int32_t>::value_type>::value>::type>
+  TestOutputBuilder& InsertForeachAdd75(const Container& key_value_pairs) {
+    for (const auto& v : key_value_pairs) {
+      InsertForeachAdd75(::google::protobuf::Map<int32_t, int32_t>::value_type(v.first, v.second));
+    }
+    return *this;
+  }
+
+  #error Cannot use 'output: INITIALIZER_LIST' with a non repeated field.
+  #error Field: proto_builder.TestOutput.initializer_list81
+  #error FieldBuilderOptions: <output: INITIALIZER_LIST>
+
+  template <class Item>
+  TestOutputBuilder& AddInitializerList82(std::initializer_list<Item> values) {
+    for (const auto& v : values) {
+      AddInitializerList82(v);
+    }
+    return *this;
+  }
+
+  TestOutputBuilder& InsertInitializerList85(std::initializer_list<::google::protobuf::Map<int32_t, int32_t>::value_type> key_value_pairs) {
+    data_.mutable_initializer_list85()->insert(key_value_pairs.begin(), key_value_pairs.end());
+    return *this;
+  }

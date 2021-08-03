@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package proto_builder.tests;
+
+import "proto_builder/proto_builder.proto";
+
+message Inherit {
+  option (proto_builder.message) = {
+    base_class: "public InheritBase<{{CLASS_NAME}}>"
+    include: "proto_builder/tests/inherit_util.h"
+  };
+
+  optional string first_name = 1 [(proto_builder.field) = { override: true }];
+  optional string last_name = 2 [(proto_builder.field) = { override: true }];
+}

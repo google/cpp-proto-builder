@@ -1,0 +1,154 @@
+TestMessageBuilder& TestMessageBuilder::SetOne(int32_t value) {
+  data_.set_one(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::AddTwo(int32_t value) {
+  data_.add_two(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetThree(const ::proto_builder::TestMessage::Sub& value) {
+  *data_.mutable_three() = value;
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetThreeSubOne(const std::string& value) {
+  data_.mutable_three()->set_sub_one(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::AddThreeSubTwo(const std::string& value) {
+  data_.mutable_three()->add_sub_two(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetThreeSub3(const std::string& value) {
+  data_.mutable_three()->set___sub__3__(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::AddFour(const ::proto_builder::TestMessage::Sub& value) {
+  *data_.add_four() = value;
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetFive(const ::proto_builder::ExtraTestMessage& value) {
+  *data_.mutable_five() = value;
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetFiveOne(int32_t value) {
+  data_.mutable_five()->set_one(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetSix(int32_t value) {
+  data_.set_six(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetSeven(const std::string& value) {
+  data_.set_seven(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::InsertEight(const ::google::protobuf::Map<int32_t, std::string>::value_type& key_value_pair) {
+  data_.mutable_eight()->insert(key_value_pair);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::InsertNine(const ::google::protobuf::Map<std::string, ::proto_builder::TestMessage::Sub>::value_type& key_value_pair) {
+  data_.mutable_nine()->insert(key_value_pair);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::InsertSixteen(const ::google::protobuf::Map<std::string, ::proto_builder::MapValueTestMessage>::value_type& key_value_pair) {
+  data_.mutable_sixteen()->insert(key_value_pair);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetSeventeen(const ::proto_builder::TestMessage::Seventeen& value) {
+  *data_.mutable_seventeen() = value;
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetSeventeenEighteen(int32_t value) {
+  data_.mutable_seventeen()->set_eighteen(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetF19NoRecurse(const ::proto_builder::TestMessage::Sub& value) {
+  *data_.mutable_f19_no_recurse() = value;
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::AddF20NoRecurseRep(const ::proto_builder::TestMessage::Sub& value) {
+  *data_.add_f20_no_recurse_rep() = value;
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetNamespace(int32_t value) {
+  data_.set_namespace_(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::AddAnd(int32_t value) {
+  data_.add_and_(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetOr(const ::proto_builder::TestMessage& value) {
+  *data_.mutable_or_() = value;
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::AddNot(const ::proto_builder::TestMessage& value) {
+  *data_.add_not_() = value;
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetOperator(int32_t value) {
+  data_.set_operator_(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetString21(const std::string& value) {
+  data_.set_string21(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetString22(const std::string& value) {
+  data_.set_string22(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetString23(const std::string& value) {
+  data_.set_string23(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetString24(absl::string_view value) {
+  data_.set_string24(std::string(value));
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetBytes25(const std::string& value) {
+  data_.set_bytes25(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetBytes26(const std::string& value) {
+  data_.set_bytes26(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetBytes27(const std::string& value) {
+  data_.set_bytes27(value);
+  return *this;
+}
+
+TestMessageBuilder& TestMessageBuilder::SetBytes28(absl::string_view value) {
+  data_.set_bytes28(std::string(value));
+  return *this;
+}

@@ -1,0 +1,34 @@
+ValidatorBuilder& ValidatorBuilder::SetAddress(const std::string& value) {
+  data_.set_address(value);
+  return *this;
+}
+
+ValidatorBuilder& ValidatorBuilder::AddFallback(const ::proto_builder::tests::Validator::Fallback& value) {
+  *data_.add_fallback() = value;
+  return *this;
+}
+
+ValidatorBuilder& ValidatorBuilder::AddNotValidated(const ::proto_builder::tests::Validator::NotValidated& value) {
+  *data_.add_not_validated() = value;
+  return *this;
+}
+
+ValidatorBuilder& ValidatorBuilder::InsertNamedFallback(const ::google::protobuf::Map<std::string, ::proto_builder::tests::Validator::Fallback>::value_type& key_value_pair) {
+  data_.mutable_named_fallback()->insert(key_value_pair);
+  return *this;
+}
+
+ValidatorBuilder& ValidatorBuilder::SetOptions(const ::proto_builder::tests::Validator::Fallback& value) {
+  *data_.mutable_options() = value;
+  return *this;
+}
+
+ValidatorBuilder& ValidatorBuilder::SetOptions(const std::string& value) {
+  *data_.mutable_options() = [=]{ ::proto_builder::tests::Validator::Fallback result; result.set_address(value); return result; }();
+  return *this;
+}
+
+ValidatorBuilder& ValidatorBuilder::InsertOther(const ::google::protobuf::Map<int64_t, std::string>::value_type& key_value_pair) {
+  data_.mutable_other()->insert(key_value_pair);
+  return *this;
+}

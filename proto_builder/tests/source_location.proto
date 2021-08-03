@@ -1,0 +1,43 @@
+syntax = "proto2";
+
+package proto_builder.tests;
+
+import "proto_builder/proto_builder.proto";
+
+message SourceLocation {
+  option (proto_builder.message) = {
+    type_map {
+      key: "NonEmpty"
+      value {
+        predicate: "[=]{ return @value@.empty() ? absl::InvalidArgumentError(std::string(\"Cannot be empty @\") + @source_location@.file_name()) : absl::OkStatus(); }()"
+      }
+    }
+  };
+
+  repeated string target = 1 [
+    (proto_builder.field) = {
+      output: HEADER
+      add_source_location: true
+    },
+    (proto_builder.field) = {
+      output: FOREACH_ADD
+      name: "Targets"
+      add_source_location: true
+    },
+    (proto_builder.field) = {
+      output: INITIALIZER_LIST
+      name: "Targets"
+      add_source_location: true
+    }
+  ];
+
+  optional string without_src_loc = 2 [(proto_builder.field) = {
+    add_source_location: false
+    macro: "NonEmpty"
+  }];
+
+  optional string with_src_loc = 3 [(proto_builder.field) = {
+    add_source_location: true
+    macro: "NonEmpty"
+  }];
+}

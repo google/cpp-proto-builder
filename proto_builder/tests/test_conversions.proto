@@ -1,0 +1,132 @@
+// Copyright 2021 The CPP Proto Builder Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// READ: https://google.github.io/cpp-proto-builder
+
+syntax = "proto2";
+
+package proto_builder;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "proto_builder/proto_builder.proto";
+
+message Conversions {
+  repeated string line = 1 [
+    (proto_builder.field) = { output: BOTH },
+    (proto_builder.field) = {
+      output: FOREACH_ADD,
+      name: "Lines"
+    },
+    (proto_builder.field) = {
+      output: INITIALIZER_LIST,
+      name: "Lines"
+    }
+  ];
+
+  message Duration {
+    optional int64 int64_seconds = 1
+        [(proto_builder.field) = { type: "@ToInt64Seconds" }];
+
+    optional int64 int64_milliseconds = 2 [
+      (proto_builder.field) = { type: "@ToInt64Milliseconds" }
+    ];
+
+    optional double double_seconds = 3
+        [(proto_builder.field) = { type: "@ToDoubleSeconds" }];
+
+    optional double double_milliseconds = 4 [
+      (proto_builder.field) = { type: "@ToDoubleMilliseconds" }
+    ];
+  }
+
+  optional Duration time = 2;
+
+  message ProtoTime {
+    optional google.protobuf.Duration duration = 1
+        [(proto_builder.field) = { type: "@ToProtoDuration" }];
+    optional google.protobuf.Timestamp time = 2
+        [(proto_builder.field) = { type: "@ToProtoTimestamp" }];
+  }
+
+  optional ProtoTime proto_time = 10;
+
+  message Sub {
+    optional int64 one = 1;
+    optional int64 two = 2;
+  }
+
+  optional Sub optional_sub = 3 [
+    (proto_builder.field) = { output: BOTH },
+    (proto_builder.field) = { type: "@TextProto" }
+  ];
+
+  repeated Sub repeated_sub1 = 4 [
+    (proto_builder.field) = { output: BOTH },
+    (proto_builder.field) = { type: "@TextProto" },
+    (proto_builder.field) = { output: FOREACH_ADD },
+    (proto_builder.field) = { output: INITIALIZER_LIST },
+    (proto_builder.field) = {
+      output: FOREACH_ADD
+      name: "RepeatedSub1Text"
+      type: "@TextProto"
+    },
+    (proto_builder.field) = {
+      output: INITIALIZER_LIST
+      name: "RepeatedSub1Text"
+      type: "@TextProto"
+    }
+  ];
+
+  repeated Sub repeated_sub2 = 5 [
+    (proto_builder.field) = { output: BOTH },
+    (proto_builder.field) = { type: "@TextProto" },
+    (proto_builder.field) = {
+      type: "@TextProto:absl::string_view"
+    },
+    (proto_builder.field) = { output: FOREACH_ADD },
+    (proto_builder.field) = { output: INITIALIZER_LIST }
+  ];
+
+  repeated Sub repeated_sub3 = 6 [(proto_builder.field) = {
+    type: "::proto_builder::Conversions_SubBuilder"
+    include: "proto_builder/tests/test_conversions_sub_builder.h"
+  }];
+
+  map<int32, string> mymap = 7 [
+    (proto_builder.field) = { output: BOTH },
+    (proto_builder.field) = { output: FOREACH },
+    (proto_builder.field) = { output: INITIALIZER_LIST }
+  ];
+
+  map<int32, string> other_map = 8 [
+    (proto_builder.field) = { output: BOTH },
+    (proto_builder.field) = { output: FOREACH_ADD }
+  ];
+
+  map<int32, Sub> sub_map = 9 [
+    (proto_builder.field) = { output: BOTH },
+    (proto_builder.field) = {
+      type: "@TextProto:Map:Value:absl::string_view"
+    },
+    (proto_builder.field) = {
+      type: "@TextProto:Map:Value:absl::string_view"
+      output: FOREACH_ADD
+    },
+    (proto_builder.field) = {
+      type: "@TextProto:Map:Value:absl::string_view"
+      output: INITIALIZER_LIST
+    }
+  ];
+}

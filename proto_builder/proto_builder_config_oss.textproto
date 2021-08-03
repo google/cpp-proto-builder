@@ -1,0 +1,234 @@
+# Copyright 2021 The CPP Proto Builder Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# READ: https://google.github.io/cpp-proto-builder
+
+# Default type configuration for https://google.github.io/cpp-proto-builder
+# proto-file: net/proto2/contrib/proto_builder/proto_builder.proto
+# proto-message: proto_builder.ProtoBuilderConfig
+type_map {
+  key: "string"
+  value {
+    type: "std::string"
+    decorated_type: "const std::string&"
+    include: "<string>"
+  }
+}
+type_map {
+  key: "bytes"
+  value {
+    type: "std::string"
+    decorated_type: "const std::string&"
+    include: "<string>"
+  }
+}
+type_map {
+  key: "@absl::string_view"
+  value {
+    type: "absl::string_view"
+    decorated_type: "absl::string_view"
+    conversion: "std::string(@value@)"
+    include: "absl/strings/string_view.h"
+    include: "<string>"
+    dependency: "@com_google_absl//absl/strings"
+  }
+}
+type_map {
+  key: "@Map:absl::string_view"
+  value {
+    # This allows to convert input of type std::pair<absl::string_view, absl::string_view>
+    # into ::google::protobuf::Map<Key, Value> for proto map types where both Key and Value
+    # are of type string.
+    type: "std::pair<absl::string_view, absl::string_view>"
+    conversion: "@type@(@type@::first_type(@value@.first), @type@::second_type(@value@.second))"
+    include: "<utility>"
+    include: "absl/strings/string_view.h"
+    dependency: "@com_google_absl//absl/strings"
+  }
+}
+type_map {
+  key: "@TextProto"
+  value {
+    # Using 'const char* over "absl::string_view" or "string" allows repeated
+    # field setters defined with FOREACH_ADD or INITIALIZER_LIST to rely on a
+    # method using just this type conversion. That way they automatically have
+    # text proto support. This works because both FOREACH_ADD and INIT.. use
+    # a template parameter. If the type here was "absl::string_view" or
+    # "string", then the compiler would not find a match and chose the Container
+    # method again. This all assumes no renaming is in place.
+    type: "const char*"
+    decorated_type: "const char*"
+    conversion: "::proto_builder::oss::ParseTextOrDie<@type@>(@value@)"
+    include: "proto_builder/oss/parse_text_proto.h"
+    dependency: "@com_google_cpp_proto_builder//proto_builder/oss:parse_text_proto_cc"
+  }
+}
+type_map {
+  key: "@TextProto:absl::string_view"
+  value {
+    type: "absl::string_view"
+    decorated_type: "absl::string_view"
+    conversion: "::proto_builder::oss::ParseTextOrDie<@type@>(@value@)"
+    include: "absl/strings/string_view.h"
+    include: "proto_builder/oss/parse_text_proto.h"
+    dependency: "@com_google_absl//absl/strings"
+    dependency: "@com_google_cpp_proto_builder//proto_builder/oss:parse_text_proto_cc"
+  }
+}
+type_map {
+  key: "@TextProto:Map:Value:absl::string_view"
+  value {
+    # This allows to convert input of type std::pair<Key, absl::string_view>
+    # into ::google::protobuf::Map<Key, Value> for proto map types. The generated code
+    # will automatically convert from absl::string_view to the mapped value
+    # type aka 'value_type::second_type'.
+    type: "std::pair<@type@::first_type, absl::string_view>"
+    conversion: "@type@(@value@.first, ::proto_builder::oss::ParseTextOrDie<@type@::second_type>(@value@.second))"
+    include: "<utility>"
+    include: "absl/strings/string_view.h"
+    include: "proto_builder/oss/parse_text_proto.h"
+    dependency: "@com_google_absl//absl/strings"
+    dependency: "@com_google_cpp_proto_builder//proto_builder/oss:parse_text_proto_cc"
+  }
+}
+type_map {
+  key: "@ToInt64Seconds"
+  value {
+    type: "absl::Duration"
+    decorated_type: "absl::Duration"
+    conversion: "absl::ToInt64Seconds(@value@)"
+    include: "absl/time/time.h"
+    dependency: "@com_google_absl//absl/time"
+  }
+}
+type_map {
+  key: "@ToInt64Milliseconds"
+  value {
+    type: "absl::Duration"
+    decorated_type: "absl::Duration"
+    conversion: "absl::ToInt64Milliseconds(@value@)"
+    include: "absl/time/time.h"
+    dependency: "@com_google_absl//absl/time"
+  }
+}
+type_map {
+  key: "@ToDoubleSeconds"
+  value {
+    type: "absl::Duration"
+    decorated_type: "absl::Duration"
+    conversion: "absl::ToDoubleSeconds(@value@)"
+    include: "absl/time/time.h"
+    dependency: "@com_google_absl//absl/time"
+  }
+}
+type_map {
+  key: "@ToDoubleMilliseconds"
+  value {
+    type: "absl::Duration"
+    decorated_type: "absl::Duration"
+    conversion: "absl::ToDoubleMilliseconds(@value@)"
+    include: "absl/time/time.h"
+    dependency: "@com_google_absl//absl/time"
+  }
+}
+type_map {
+  key: "@ToProtoDuration"
+  value {
+    type: "absl::Duration"
+    conversion: "*proto_builder::oss::ConvertToProto(@value@)"
+    include: "proto_builder/oss/proto_conversion_helpers.h"
+    source_include: "proto_builder/oss/proto_conversion_helpers.h"
+    recurse: false
+    dependency: "@com_google_cpp_proto_builder//proto_builder/oss:proto_conversion_helpers_cc"
+  }
+}
+type_map {
+  key: "@ToProtoTimestamp"
+  value: {
+    type: "absl::Time"
+    conversion: "*proto_builder::oss::ConvertToProto(@value@)"
+    include: "proto_builder/oss/proto_conversion_helpers.h"
+    source_include: "proto_builder/oss/proto_conversion_helpers.h"
+    recurse: false
+    dependency: "@com_google_cpp_proto_builder//proto_builder/oss:proto_conversion_helpers_cc"
+  }
+}
+type_map {
+  key: "%SourceLocation"
+  value: {
+    type: "proto_builder::oss::SourceLocation"
+    value: "proto_builder::oss::SourceLocation::current()"
+    include: "proto_builder/oss/source_location.h"
+    dependency: "@com_google_cpp_proto_builder//proto_builder/oss:source_location_cc"
+    param: "source_location"
+  }
+}
+type_map {
+  key: "%Status"
+  value: {
+    type: "absl::Status"
+    value: "absl::OkStatus()"
+    source_include: "<utility>"
+    include: "absl/status/status.h"
+    dependency: "@com_google_absl//absl/status"
+    param: "status"
+  }
+}
+type_map {
+  key: "%StatusOr"
+  value: {
+    type: "absl::StatusOr"
+    source_include: "<utility>"
+    include: "absl/status/statusor.h"
+    dependency: "@com_google_absl//absl/status:statusor"
+  }
+}
+type_map {
+  key: "%Validate"
+  value {
+    # Not a 'type' but rather a function: {{%Status}} Validate({{PROTO_TYPE}})
+    type: "protobuf::contrib::validator::Validate"
+  }
+}
+type_map {
+  key: "%LogSourceLocation"
+  value {
+    # Not a type but rather a function call.
+    type: "AddSourceLocationToStatus(source_location_, status_);"
+  }
+}
+type_map {
+  key: "=google::protobuf::Duration"
+  value {
+    type: "absl::Duration"
+    automatic: true
+    conversion: "::proto_builder::oss::ConvertToProto(@value@).value_or(@type@())"
+    include: "proto_builder/oss/proto_conversion_helpers.h"
+    include: "absl/time/time.h"
+    source_include: "proto_builder/oss/proto_conversion_helpers.h"
+    dependency: "@com_google_cpp_proto_builder//proto_builder/oss:proto_conversion_helpers_cc"
+  }
+}
+type_map {
+  key: "=google::protobuf::Timestamp"
+  value {
+    type: "absl::Time"
+    automatic: true
+    conversion: "::proto_builder::oss::ConvertToProto(@value@).value_or(@type@())"
+    include: "proto_builder/oss/proto_conversion_helpers.h"
+    include: "absl/time/time.h"
+    source_include: "proto_builder/oss/proto_conversion_helpers.h"
+    dependency: "@com_google_cpp_proto_builder//proto_builder/oss:proto_conversion_helpers_cc"
+  }
+}

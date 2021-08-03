@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package proto_builder.tests;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+message Automatic {
+  optional google.protobuf.Duration duration = 1;
+  repeated google.protobuf.Duration duration_list = 2;
+  optional google.protobuf.Timestamp timestamp = 3;
+  repeated google.protobuf.Timestamp timestamp_list = 4;
+}
